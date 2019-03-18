@@ -31,7 +31,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   } else if(newUserChannel === undefined){
 
     // User leaves a voice channel
-      if(oldMember.id === '514856260353392660'){
+      if(oldMember.id === '455500545587675156'){
           return console.log("BOT");
       }
       else{
@@ -91,7 +91,7 @@ client.on('message', async msg => { // eslint-disable-line
                 await handleVideo(video2, msg, voiceChannel, true);
             }
             var embedplay4 = new Discord.RichEmbed()
-                .setTitle(`**Playlist: ${playlist.title} queued!**`)
+                .setTitle(`Playlist: ${playlist.title} queued!`)
                 .setColor([226, 50, 41])
             return msg.channel.sendEmbed(embedplay4);
         }else{
@@ -102,11 +102,11 @@ client.on('message', async msg => { // eslint-disable-line
                     var videos = await youtube.searchVideos(searchString, 10);
                     let index = 0;
                     var embedqueue5 = new Discord.RichEmbed()
-                        .setTitle(`__**Song Play By Blackfox**__`)
+                        .setTitle(`__Song Play By Cryo__`)
                         .setDescription(`
-${videos.map(video2 => `**${++index}-** ${video2.title}`).join('\n')}
+${videos.map(video2 => `${++index}- ${video2.title}`).join('\n')}
 
-**Please enter a number between 1-10 on,a Song select!**`)
+Please enter a number between 1-10 on,a Song select!`)
                 .setColor([226, 50, 41])
                     msg.channel.sendEmbed(embedqueue5);
                     
@@ -145,13 +145,13 @@ ${videos.map(video2 => `**${++index}-** ${video2.title}`).join('\n')}
         }
         if(!serverQueue){
             var embedskip2 = new Discord.RichEmbed()
-                .setTitle(`**There is nothing to Skip!**`)
+                .setTitle(`There is nothing to Skip!`)
                 .setColor([226, 50, 41])
             return msg.channel.sendEmbed(embedskip2);
         }
         serverQueue.connection.dispatcher.end('Skip command has been used!');
         var embedskip3 = new Discord.RichEmbed()
-            .setTitle(`**The Bot has been Skipped!**`)
+            .setTitle(`Song Skipped!`)
             .setColor([226, 50, 41])
         return msg.channel.sendEmbed(embedskip3);
     }   
@@ -159,20 +159,20 @@ ${videos.map(video2 => `**${++index}-** ${video2.title}`).join('\n')}
      else if (msg.content.startsWith(`${PREFIX}stop`)){
         if(!msg.member.voiceChannel){
            var embedstop1 = new Discord.RichEmbed()
-                .setTitle(`**you're not in the voice channel!**`)
+                .setTitle(`you're not in the voice channel!`)
                 .setColor([226, 50, 41])
             return msg.channel.sendEmbed(embedstop1); 
         }
         if(!serverQueue){
             var embedstop2 = new Discord.RichEmbed()
-                .setTitle(`**There is nothing to stop!**`)
+                .setTitle(`There is nothing to stop!`)
                 .setColor([226, 50, 41])
             return msg.channel.sendEmbed(embedstop2);
         }
         serverQueue.songs = [];
         serverQueue.connection.dispatcher.end('Stop command has been used!');
         var embedstop3 = new Discord.RichEmbed()
-            .setTitle(`**The Bot has been Skipped!**`)
+            .setTitle(`The Bot has Disconnected`)
             .setColor([226, 50, 41])
         return msg.channel.sendEmbed(embedstop3);
     }
@@ -312,19 +312,19 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
     }
     else if(msg.content.startsWith(`${PREFIX}helpmusic`)){
         var embedhelp = new Discord.RichEmbed()
-            .setTitle(`__**BlackfoxMusic Commands**__`)
-            .addField("^play [YouTube Link/Playlist]", "Usage: `^play` Description: To play See The YouTube Linke And playlist.", false)
-            .addField("^play [Suchbegriff(e)]", "Usage: `^play`<song name> Description: To play Music.", false)
-            .addField("^skip", "Usage: `^skip` Description: To skip music.", false)
-            .addField("^stop", "Usage: `^stop` Description: To Bot disconnected.", false)
-            .addField("^song", "Usage: `^song` Description: To Check The Current playing song.", false)
-            .addField("^queue", "Usage: `^queue` Description: To Check The Queue List.", false)
-            .addField("^volume", "Usage: `^volume` Description: To See Volume.", false)
-            .addField("^volume [Wert]", "Usage: `^volume` Description: To Changes the volume level to the specified value.", false)
-            .addField("^pause", "Usage: `^pause` Description: To pause The Current Playing Song.", false)
-            .addField("^resume", "Usage: `^resume` Description: To Resume The Paused Song.", false)
-            .addField("^mutemusic", "Usage: `^mutemusic` Description: To mute Bot.", false)
-            .addField("^unmutemusic", "Usage: `^unmutemusic` Description: To unmute Bot.", false)
+            .setTitle(`__Cryo Music Commands__`)
+            .addField(">play [YouTube Link/Playlist]", "Usage: `>play` Description: To play See The YouTube Linke And playlist.", false)
+            .addField(">play [Suchbegriff(e)]", "Usage: `>play`<song name> Description: To play Music.", false)
+            .addField(">skip", "Usage: `>skip` Description: To skip music.", false)
+            .addField(">stop", "Usage: `>stop` Description: To Bot disconnected.", false)
+            .addField(">song", "Usage: `>song` Description: To Check The Current playing song.", false)
+            .addField(">queue", "Usage: `>queue` Description: To Check The Queue List.", false)
+            .addField(">volume", "Usage: `>volume` Description: To See Volume.", false)
+            .addField(">volume [Wert]", "Usage: `>volume` Description: To Changes the volume level to the specified value.", false)
+            .addField(">pause", "Usage: `>pause` Description: To pause The Current Playing Song.", false)
+            .addField(">resume", "Usage: `>resume` Description: To Resume The Paused Song.", false)
+            .addField(">mutemusic", "Usage: `>mutemusic` Description: To mute Bot.", false)
+            .addField(">unmutemusic", "Usage: `>unmutemusic` Description: To unmute Bot.", false)
             .setColor([226, 50, 41])
             .setThumbnail(client.user.avatarURL)
             return msg.channel.sendEmbed(embedhelp);
